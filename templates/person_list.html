@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for object in object_list %}
+    <div>
+        Country: {{ object.country }}
+    </div>
+{% endfor %}
+
+{# The following renders the pagination html #}
+{% include "_pagination.html" %}
+
+{% endblock %}
