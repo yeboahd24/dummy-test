@@ -26,9 +26,9 @@ SECRET_KEY = 'django-insecure-onez()c70=$arrekdenjkr(64np7t*z-pl@i&pyh)(6g*4*&&3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['two-pants-crash-154-160-25-179.loca.lt'] #localtunnel
 
-
+APPEND_SLASH = False
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_countries',
     'pure_pagination',
     'dummy',
+    'microfinance',
 
     
 ]
