@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-onez()c70=$arrekdenjkr(64np7t*z-pl@i&pyh)(6g*4*&&3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['two-pants-crash-154-160-25-179.loca.lt'] #localtunnel
+ALLOWED_HOSTS = ['two-pants-crash-154-160-25-179.loca.lt', '*'] #localtunnel
 
 APPEND_SLASH = False
 # Application definition
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'pure_pagination',
     'dummy',
     'microfinance',
+    'emails',
+    'crispy_forms',
 
     
 ]
@@ -133,3 +135,18 @@ PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 2,
     'MARGIN_PAGES_DISPLAYED': 2,
 }
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'b66c13b8340f57'
+EMAIL_HOST_PASSWORD = 'd88a0bc8b4f9d2'
+EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True
+DISPLAY_NAME = "KoldChain"
+CURRENT_SITE = "http://localhost:8000"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -22,5 +22,6 @@ urlpatterns = [
     path('person/', PersonCreate.as_view(), name='person'),
     path('list/', PersonList.as_view(), name='person_list'),
     path('finance/', include('microfinance.urls')),
+    path('', include('emails.urls', namespace='emails')),
     
 ]
