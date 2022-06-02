@@ -3,7 +3,9 @@ from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from pure_pagination.mixins import PaginationMixin
 from .models import Person
-from .forms import PersonForm
+from .forms import PersonForm, RegistrationForm, BankForm
+
+from django.views.generic.edit import FormView
 
 class PersonCreate(CreateView):
     template_name = 'person.html'
@@ -22,3 +24,23 @@ class PersonList(PaginationMixin, ListView):
     def get_queryset(self):
         return super().get_queryset().order_by('-id')
     
+
+
+class RegistrationFormView(FormView):
+    template_name = 'material/basic_form.html'
+    form_class = RegistrationForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class BankFormView(FormView):
+    template_name = 'material/bank.html'
+    form_class = BankForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

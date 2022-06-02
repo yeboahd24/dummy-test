@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'microfinance',
     'emails',
     'crispy_forms',
+    'material',
+    'material.frontend',
+    'viewflow',
+    'viewflow.frontend',
 
     
 ]

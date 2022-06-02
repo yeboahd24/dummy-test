@@ -1,0 +1,22 @@
+{% extends 'material/base.html' %}
+{% load material_form %}
+{% block title %}
+    Bank Application
+{% endblock title %}
+{% block content %}
+<form method="POST">
+    <span class="card-title grey-text text-darken-2" style="font-size:40px"><b>Bank Application</b></span>
+    <form method="POST">
+        {% csrf_token %}    
+        {% form %}
+            {% attr form.account_type 'group' class append %}inline{% endattr %}
+            {% attr form.account_mode 'group' class append %}inline{% endattr %}
+            {% attr form.deposit_type 'group' class append %}inline{% endattr %}
+            {% attr form.deposit_mode 'group' class append %}inline{% endattr %}
+            {% attr form.martial_status 'group' class append %}inline{% endattr %}
+        {% endform %}
+        <button type="submit" class="btn">Submit</button>
+    </form>
+            
+</form>
+{% endblock %}
