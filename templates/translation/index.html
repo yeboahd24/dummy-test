@@ -1,0 +1,45 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+     <div class="lan-selector">
+                {% get_current_language as LANGUAGE_CODE %}
+
+                 <form action="{% url 'change_language' %}" method="post">
+                  {% csrf_token %}
+                  <input name="text" type="hidden" value="{{ redirect_to }}" />
+                  <select name="language" id="">
+                      {% get_available_languages as LANGUAGES %}
+                      {% get_language_info_list for LANGUAGES as languages %}
+                      {% for lang in languages %}
+                      <option value="{{ lang.code }}" {% if lang.code == LANGUAGE_CODE %} selected {% endif %}>
+                          {{ lang.name_local }} | {{ lang.code }}
+                      </option>
+                      {% endfor %}
+                  </select>
+                  <input type="submit" value="Go" />
+              </form>
+</head>
+
+<body>
+
+<p> {% trans "My name is Onder" %} </p>   <p>translate işlemi ile {-% trans %-} </p>
+<br>
+   {{ a.title }}  <p>dynamic </p>
+<br>
+   {{ a.content }} <p>dynamic </p>
+<br>
+{{ b }} <p>def fonk içinden </p>
+
+<br>
+<br>
+<br>
+
+            <a href="{% url 'blog-index' %}" class="dropdown-item">blog</a>
+
+</body>
+</html>

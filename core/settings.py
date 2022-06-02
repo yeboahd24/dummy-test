@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +33,7 @@ APPEND_SLASH = False
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +50,8 @@ INSTALLED_APPS = [
     'material.frontend',
     'viewflow',
     'viewflow.frontend',
+    'lang',
+    'blog',
 
     
 ]
@@ -124,6 +128,34 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+
+
+
+# dynamic data translate
+# _ = lambda s: s
+LANGUAGES = (
+    ('en', _('English')),
+    ('de', _('German')),
+    ('tr', _('Turkish')),
+
+)
+# MODELTRANSLATION_LANGUAGES = ('en', 'de', 'tr')
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'lang.translation',
+    'blog.translation',
+
+)
+
+
+# Static data translate
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+    os.path.join(BASE_DIR, 'lang/locale/'),
+    os.path.join(BASE_DIR, 'blog/locale/'),
+
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

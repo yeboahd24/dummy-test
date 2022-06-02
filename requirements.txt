@@ -12,6 +12,7 @@ django-filter==21.1
 django-google-translate==1.1
 django-jsonstore==0.5.0
 django-material==1.10.0
+django-modeltranslation==0.18.2
 django-pure-pagination==0.3.0
 django-viewflow==1.11.0
 idna==3.3

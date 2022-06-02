@@ -16,8 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from dummy.views import PersonCreate, PersonList, RegistrationFormView, BankFormView
+from django.conf.urls.i18n import i18n_patterns
+
+from django.utils.translation import gettext_lazy as _
+from lang.views import change_language
+
 
 urlpatterns = [
+    path('change_language/',
+        change_language,
+        name='change_language'),
+    path('i18n/', include('django.conf.urls.i18n')),
+
+]
+
+urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('person/', PersonCreate.as_view(), name='person'),
     path('list/', PersonList.as_view(), name='person_list'),
@@ -25,5 +38,9 @@ urlpatterns = [
     path('emails', include('emails.urls', namespace='emails')),
     path('registration/', RegistrationFormView.as_view(), name='registration'),
     path('bank/', BankFormView.as_view(), name='bank'),
+    path('', include('lang.urls')),
+    path(_('blog/'), include('blog.urls')),
+
+    prefix_default_language=False,
     
-]
+)
