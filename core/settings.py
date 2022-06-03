@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'lang',
     'blog',
     'map',
+    'dbbackup',  # django-dbbackup
+    'django_crontab',
 
     
 ]
@@ -187,3 +189,33 @@ DISPLAY_NAME = "KoldChain"
 CURRENT_SITE = "http://localhost:8000"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, 'backups')}
+
+
+import gnupg
+gpg = gnupg.GPG()
+gpg.encoding = 'utf-8'
+key = gpg.gen_key(gpg.gen_key_input(key_type='RSA', key_length=2048, name_email="yeboahd24@gmail.com"))
+DBBACKUP_DATE_FORMAT = '%Y-%m-%d-%H%M%S'
+DBBACKUP_TIME_FORMAT = '%H:%M:%S'
+DBBACKUP_BACKUP_DIR = 'backups'
+DBBACKUP_GPG_RECIPIENT = key.fingerprint
+
+
+# DBBACKUP_CONNECTORS = {
+#     'default': {
+#         'USER': 'backupuser',
+#         'PASSWORD': 'backuppassword',
+#         'HOST': 'replica-for-backup'
+#     }
+# }
+
+# one minute
+CRONJOBS = [
+    ('*/1 * * * *', 'dummy.cron.database_backup', f'>> /{BASE_DIR}/logs/cron.log'),
+]
+
+CRONTAB_DJANGO_PROJECT_NAME = 'core'
