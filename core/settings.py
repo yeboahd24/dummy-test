@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'viewflow.frontend',
     'lang',
     'blog',
+    'map',
 
     
 ]

@@ -40,6 +40,7 @@ urlpatterns += i18n_patterns(
     path('bank/', BankFormView.as_view(), name='bank'),
     path('', include('lang.urls')),
     path(_('blog/'), include('blog.urls')),
+    path('map/', include('map.urls')),
 
     prefix_default_language=False,
     
