@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _ # < 4.0
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +33,7 @@ APPEND_SLASH = False
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,7 +55,6 @@ INSTALLED_APPS = [
     'blog',
     'map',
     'dbbackup',  # django-dbbackup
-    'django_crontab',
 
     
 ]
@@ -215,7 +215,7 @@ DBBACKUP_GPG_RECIPIENT = key.fingerprint
 
 # one minute
 CRONJOBS = [
-    ('*/1 * * * *', 'dummy.cron.database_backup', f'>> /{BASE_DIR}/logs/cron.log'),
+    ('*/1 * * * *', 'core.cron.database_backup'),
 ]
 
 CRONTAB_DJANGO_PROJECT_NAME = 'core'
