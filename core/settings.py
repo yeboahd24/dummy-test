@@ -33,7 +33,6 @@ APPEND_SLASH = False
 # Application definition
 
 INSTALLED_APPS = [
-    'django_crontab',
     'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,6 +54,8 @@ INSTALLED_APPS = [
     'blog',
     'map',
     'dbbackup',  # django-dbbackup
+    'django_crontab',
+
 
     
 ]
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -214,8 +216,11 @@ DBBACKUP_GPG_RECIPIENT = key.fingerprint
 # }
 
 # one minute
-CRONJOBS = [
-    ('*/1 * * * *', 'core.cron.database_backup'),
-]
+# CRONJOBS = [
+#     ('*/1 * * * *', 'core.cron.database_backup'),
+# ]
 
 CRONTAB_DJANGO_PROJECT_NAME = 'core'
+
+# CSP_DEFAULT_SRC = ["'self'",]
+# CSP_INCLUDE_NONCE_IN = ['script-src']
